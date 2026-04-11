@@ -30,8 +30,12 @@ class AlienContact(BaseModel):
         if self.contact_type == ContactType.physical and not self.is_verified:
             raise ValueError("Physical contact must be verified")
 
-        if self.contact_type == ContactType.telepathic and self.witness_count < 3:
-            raise ValueError("Telepathic contact requires at least 3 witnesses")
+        if (
+            self.contact_type == ContactType.telepathic
+            and self.witness_count < 3
+        ):
+            raise ValueError("Telepathic contact requires "
+                             "at least 3 witnesses")
 
         if self.signal_strength > 7.0 and not self.message_received:
             raise ValueError("Strong signals must include a message")
@@ -83,4 +87,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    print()
     main()
+    print()

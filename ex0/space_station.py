@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError
 from datetime import datetime
 from typing import Optional
 
@@ -48,10 +48,10 @@ def main() -> None:
             oxygen_level=50.0,
             last_maintenance="2024-01-01T12:00:00")
 
-    except Exception as e:
+    except ValidationError as e:
         print(
             "Expected validation error:\n"
-            f"{e.errors()[0]['msg']}")
+            f"{e.errors()[0]['msg']}\n")
 
 
 if __name__ == "__main__":
